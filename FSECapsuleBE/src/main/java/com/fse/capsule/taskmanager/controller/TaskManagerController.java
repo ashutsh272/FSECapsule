@@ -3,6 +3,7 @@ package com.fse.capsule.taskmanager.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,45 +43,46 @@ public class TaskManagerController {
 	}
 
 	// view/taskName
-	@RequestMapping("taskmanger/task/view/{taskName}")
-	public List<Task> getTasksBasedOnTaskName() {
-		System.out.println("Request Received for getTasksBasedOnTaskName");
-		return taskManagerServiceImpl.getTasksBasedOnTaskName();
+	@RequestMapping("taskmanger/task/view/name/{taskName}")
+	public List<Task> getTasksBasedOnTaskName(@PathVariable String taskName) {
+		System.out.println("Request Received for getTasksBasedOnTaskName: "+taskName);
+		return taskManagerServiceImpl.getTasksBasedOnTaskName(taskName);
 	}
 
 	// View/parentTaskName
-	@RequestMapping("taskmanger/task/view/{parentTaskName}")
-	public List<Task> getTasksBasedOnParentTaskName() {
+	@RequestMapping("taskmanger/task/view/parent/{parentTaskName}")
+	public List<Task> getTasksBasedOnParentTaskName(@PathVariable String parentTaskName) {
 		System.out.println("Request Received for getTasksBasedOnParentTaskName");
-		return taskManagerServiceImpl.getTasksBasedOnParentTaskName();
+		return taskManagerServiceImpl.getTasksBasedOnParentTaskName(parentTaskName);
 	}
 
 	// View/startDate
-	@RequestMapping("taskmanger/task/view/{startDate}")
-	public List<Task> getTasksBasedOnStartDate() {
+	@RequestMapping("taskmanger/task/view/startDate/{startDate}")
+	public List<Task> getTasksBasedOnStartDate(@PathVariable String startDate) {
 		System.out.println("Request Received for getTasksBasedOnStartDate");
-		return taskManagerServiceImpl.getTasksBasedOnStartDate();
+		return taskManagerServiceImpl.getTasksBasedOnStartDate(startDate);
 	}
 
 	// View/endDate
-	@RequestMapping("taskmanger/task/view/{endDate}")
-	public List<Task> getTasksBasedOnEndDate() {
+	@RequestMapping("taskmanger/task/view/endDate/{endDate}")
+	public List<Task> getTasksBasedOnEndDate(@PathVariable String endDate) {
 		System.out.println("Request Received for getTasksBasedOnEndDate");
-		return taskManagerServiceImpl.getTasksBasedOnEndDate();
+		return taskManagerServiceImpl.getTasksBasedOnEndDate(endDate);
 	}
 
 	// view/priority
-	@RequestMapping("taskmanger/task/view/{priority}")
-	public List<Task> getTasksBasedOnPriority() {
+	@RequestMapping("taskmanger/task/view/priority/{priority}")
+	public List<Task> getTasksBasedOnPriority(@PathVariable String priority) {
 		System.out.println("Request Received for getTasksBasedOnPriority");
-		return taskManagerServiceImpl.getTasksBasedOnPriority();
+		return taskManagerServiceImpl.getTasksBasedOnPriority(priority);
 	}
 
 	// delete
 	@RequestMapping("taskmanger/task/delete/{taskName}")
-	public List<Task> deleteTaskBasedOnTaskName() {
+	public String deleteTaskBasedOnTaskName(@PathVariable String taskName) {
 		System.out.println("Request Received for getTasksBasedOnPriority");
-		return taskManagerServiceImpl.getTasksBasedOnPriority();
+		taskManagerServiceImpl.deleteTask(taskName);
+		return "Task Deleted";
 	}
 
 	// save

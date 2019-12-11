@@ -8,17 +8,17 @@ public interface TaskManagerService {
 
 	List<Task> getAllTasks();
 
-	List<Task> getTasksBasedOnTaskName();
+	List<Task> getTasksBasedOnTaskName(String taskName);
 
-	List<Task> getTasksBasedOnParentTaskName();
+	List<Task> getTasksBasedOnParentTaskName(String parentTaskName);
 
-	List<Task> getTasksBasedOnStartDate();
+	List<Task> getTasksBasedOnStartDate(String startDate);
 
-	List<Task> getTasksBasedOnEndDate();
+	List<Task> getTasksBasedOnEndDate(String endDate);
 
-	List<Task> getTasksBasedOnPriority();
+	List<Task> getTasksBasedOnPriority(String priority);
 
-	void deleteTask(Task task);
+	void deleteTask(String taskName);
 
 	void saveTask(Task task);
 

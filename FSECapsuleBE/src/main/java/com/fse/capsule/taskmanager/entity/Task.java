@@ -3,6 +3,7 @@ package com.fse.capsule.taskmanager.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,10 @@ public class Task implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
+	@Id
 	private String taskName;
+	
 	private String parentTaskName;
 	private String startDate;
 	private String endDate;
