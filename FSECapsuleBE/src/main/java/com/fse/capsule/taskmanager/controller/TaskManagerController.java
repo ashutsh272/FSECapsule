@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.fse.capsule.taskmanager.entity.Task;
+import com.fse.capsule.taskmanager.model.SimpleResponse;
 import com.fse.capsule.taskmanager.service.TaskManagerService;
 
 @RestController // Helps Spring know that this is a rest controller and hence
@@ -25,16 +26,7 @@ public class TaskManagerController {
 		return "Hello from FSE Task Manager!!";
 	}
 
-	@RequestMapping("taskmanger/services")
-	public String getAllServices() {
-		return "FSE Task Manager Service URLs: <BR>" + "taskmanager/hello"
-				+ "<a href=\"http://localhost:8080/taskmanager.html\">here</a><BR>" + "taskmanger/services"
-				+ "taskmanger/task/view/all" + "taskmanger/task/view/{taskName}"
-				+ "taskmanger/task/view/{parentTaskName}" + "taskmanger/task/view/{startDate}"
-				+ "taskmanger/task/view/{endDate}" + "taskmanger/task/view/{priority}"
-				+ "taskmanger/task/delete/{taskName}" + "taskmanger/task/save";
-	}
-
+	
 	// View/all
 	@RequestMapping("taskmanger/task/view/all")
 	public List<Task> getAllTasks() {
@@ -78,19 +70,20 @@ public class TaskManagerController {
 	}
 
 	// delete
-	@RequestMapping("taskmanger/task/delete/{taskName}")
-	public String deleteTaskBasedOnTaskName(@PathVariable String taskName) {
-		System.out.println("Request Received for getTasksBasedOnPriority");
-		taskManagerServiceImpl.deleteTask(taskName);
-		return "Task Deleted";
+	@RequestMapping("taskmanger/task/end/{taskName}")
+	public SimpleResponse upDateTaskStatus(@PathVariable String taskName) {
+		System.out.println("Request Received for upDateTaskStatus");
+		taskManagerServiceImpl.updateTaskStatus(taskName);
+		return new SimpleResponse("Task status updated");
 	}
 
 	// save
 	@RequestMapping(method = RequestMethod.POST, value = "taskmanger/task/save")
-	public String saveTask(@RequestBody Task task) {
+	public SimpleResponse saveTask(@RequestBody Task task) {
 		System.out.println("Request received for saveTask");
 		taskManagerServiceImpl.saveTask(task);
-		return "Task Saved";
+		System.out.println("Task Saved");
+		return new SimpleResponse("Task Saved");
 	}
 
 }

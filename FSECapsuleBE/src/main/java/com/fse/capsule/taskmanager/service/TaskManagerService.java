@@ -22,4 +22,6 @@ public interface TaskManagerService {
 
 	void saveTask(Task task);
 
+	void updateTaskStatus(String taskName);
+
 }

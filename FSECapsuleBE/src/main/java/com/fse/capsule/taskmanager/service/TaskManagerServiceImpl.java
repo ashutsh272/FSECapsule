@@ -66,9 +66,15 @@ public class TaskManagerServiceImpl implements TaskManagerService {
 
 	@Override
 	public void saveTask(Task task) {
-		System.out.println("Entry saveTask: "+task);
+		System.out.println("Entry saveTask: "+task+ " " +task.getTaskName());
 		taskManagerRepo.save(task);
 
+	}
+
+	@Override
+	public void updateTaskStatus(String taskName) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
